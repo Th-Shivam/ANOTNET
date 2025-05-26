@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { TracingBeam } from "../components/ui/tracing-beam";
+import { TracingBeam } from "./ui/tracing-beam";
 
 export function TracingBeamDemo() {
     return (
@@ -72,15 +72,22 @@ const dummyContent = [
                     By simplifying code, making tutorials practical, and keeping our language real and relatable, we want to ensure that no learner is left behind. <br />  <br />Whether you're just starting your coding journey or looking to level up, Anotnet is here to support you every step of the way.</p>
             </>
         ),
-        badge: "Changelog",
+        badge: "Think big, think fast, think ahead",
         image:
             "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        title: "Lorem Ipsum Dolor Sit Amet",
+        title: "What We Do",
         description: (
             <>
-                <p>Ex irure dolore veniam ex velit non aute nisi... </p>
+                <p>Anotnet is more than just a platform—it’s a growing csommunity of curious minds who are passionate about learning and building. <br /><br />
+
+                    We create content on programming (HTML, CSS, JavaScript, Tailwind CSS), ethical hacking tips, and even automation tools. <br /> <br /> But we don’t stop there. Every piece of content we publish is crafted with simplicity and clarity, so that even the most complex topics feel easy to understand. <br /> <br />
+
+                    From YouTube videos to blog posts, from source codes to hands-on projects—we are building an ecosystem that not only teaches you how to build websites, apps, and tools, but also how to think like a developer. <br /> <br />
+
+                    Our mission is to provide genuine knowledge that makes you independent, confident, and future-ready. <br /> <br />
+                    Because when you learn with understanding, you don’t just copy-paste code—you build your own future. <br /></p>
             </>
         ),
         badge: "Launch Week",
