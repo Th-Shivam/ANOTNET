@@ -5,20 +5,22 @@ export function ThreeDMarqueeDemo() {
   const images = [
     "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
     "https://assets.aceternity.com/animated-modal.png",
-    "https://assets.aceternity.com/animated-testimonials.webp",
-    "https://assets.aceternity.com/cloudinary_bkp/Tooltip_luwy44.png",
-    "https://assets.aceternity.com/github-globe.png",
-    "https://assets.aceternity.com/glare-card.png",
-    "https://assets.aceternity.com/layout-grid.png",
-    "https://assets.aceternity.com/flip-text.png",
+    "../src/assets/showcase_images/7p.png",
+    "../src/assets/showcase_images/html.png",
+    "../src/assets/showcase_images/css.png",
+    "../src/assets/showcase_images/js.png",
+    "../src/assets/showcase_images/twind.jpeg",
+    "../src/assets/showcase_images/cloud.jpg",
     "https://assets.aceternity.com/hero-highlight.png",
-    "https://assets.aceternity.com/carousel.webp",
-    "https://assets.aceternity.com/placeholders-and-vanish-input.png",
-    "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
+    "../src/assets/showcase_images/coder.jpg",
     "https://assets.aceternity.com/signup-form.png",
-    "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
-    "https://assets.aceternity.com/spotlight-new.webp",
-    "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
+    "../src/assets/showcase_images/bootsrap.png",
+    "../src/assets/showcase_images/react.png",
+    "../src/assets/showcase_images/python.jpeg",
+  
+    "../src/assets/showcase_images/cpp.jpg",
+    
+    "../src/assets/showcase_images/github.jpg",
     "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
     "https://assets.aceternity.com/tabs.png",
     "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
@@ -33,7 +35,7 @@ export function ThreeDMarqueeDemo() {
     "https://assets.aceternity.com/multi-step-loader.png",
     "https://assets.aceternity.com/vortex.png",
     "../src/assets/2.png",
-    "../src/assets/1.png",
+    "../src/assets/showcase_images/3.png",
   ];
   return (
     <div
