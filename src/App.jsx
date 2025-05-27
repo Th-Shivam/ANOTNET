@@ -4,6 +4,8 @@ import LandingPage from './components/LandingPage.jsx'
 import Showcase from './components/showcase.jsx'
 import Intro from './components/intro.jsx'
 import About from './components/about.jsx'
+import ThreeDCard from './components/3d_card.jsx'
+import Services from './components/services.jsx'
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
       <Showcase />
       <Intro/>
       <About/>
+      <ThreeDCard/>
+      <Services/>
      
     </div>
   )
