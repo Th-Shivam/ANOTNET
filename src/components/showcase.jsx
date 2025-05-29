@@ -5,7 +5,7 @@ export function ThreeDMarqueeDemo() {
   const images = [
     "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
     "https://assets.aceternity.com/animated-modal.png",
-    "/showcase_images/7p.png",
+    "showcase_images/7p.png",
     "showcase_images/html.png",
     "showcase_images/css.png",
     "showcase_images/js.png",
@@ -25,7 +25,7 @@ export function ThreeDMarqueeDemo() {
     "showcase_images/netcat.jpeg",
     "showcase_images/kali.jpg",
     "showcase_images/steal_data.jpg",
-    "../src/assets/3.png",
+    "showcase_images/rudrakali.png",
     
     "showcase_images/hacker.jpg",
     "showcase_images/netcat.jpg",
@@ -33,7 +33,7 @@ export function ThreeDMarqueeDemo() {
     "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
     "showcase_images/burp.png",
     "showcase_images/burp.png",
-    "../src/assets/2.png",
+    "showcase_images/cmdchat.png",
     "showcase_images/3.png",
   ];
   return (

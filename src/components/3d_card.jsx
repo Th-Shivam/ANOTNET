@@ -22,7 +22,7 @@ export function ThreeDCardDemo() {
         </CardItem>
         <CardItem translateZ="100" className="w-full mt-4">
           <img
-            src="../src/assets/showcase_images/hacker.jpg"
+            src="showcase_images/hacker.jpg"
             height="1000"
             width="1000"
             className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -32,7 +32,7 @@ export function ThreeDCardDemo() {
           <CardItem
             translateZ={20}
             as="a"
-            href="https://twitter.com/mannupaaji"
+            href="https://instagram.com/ryzen_shivam"
             target="__blank"
             className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white">
             Try now →
