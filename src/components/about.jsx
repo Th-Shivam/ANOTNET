@@ -60,7 +60,7 @@ const dummyContent = [
             </>
         ),
         badge: "Hello Worldwide , Welcome to ANOTNET",
-        image: "../src/assets/shivam.jpeg",
+        image: "showcase_images/shivam.jpeg",
     },
     {
         title: " Our Vision",
