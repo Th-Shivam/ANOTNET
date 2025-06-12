@@ -38,7 +38,7 @@ export function ThreeDMarqueeDemo() {
   ];
   return (
     <div
-      className="mx-auto h-screen my-10 mt-0 rounded-3xl bg-[#030317] p-2 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
+      className="hidden sm:block mx-auto h-[600px] sm:h-[700px] lg:h-[800px] w-full overflow-hidden rounded-3xl bg-[#030317] p-2 mb-20">
       <ThreeDMarquee images={images} />
     </div>
   );
