@@ -8,6 +8,7 @@ export function LampDemo() {
   return (
     <LampContainer>
       <motion.h1
+        id="intro-section"
         initial={{ opacity: 0.5, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{

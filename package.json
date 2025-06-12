@@ -22,6 +22,7 @@
     "motion": "^12.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2",
     "tailwind-merge": "^3.3.0",
     "three": "^0.176.0"
   },
