@@ -17,10 +17,10 @@ export function LampDemo() {
           ease: "easeInOut",
         }}
         className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-        About Us <br /> <br />
+       About Us <br /> <br />
 
         
-      <div className='text-lg text-white-600 font-raleway text-center '>
+      <div className='text-lg text-white-600 font-raleway text-center mt-10'>
         Welcome to ANOTNET, a tech-driven company dedicated to automation, cybersecurity, and AI innovation.
         <br /> <br />
         At  ANOTNET, we specialize in providing automation scripts, ethical hacking tools, and security-focused scripts to enhance efficiency and security in the digital world.
