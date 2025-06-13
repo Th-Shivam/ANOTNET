@@ -2,7 +2,7 @@
 import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
-export function OurServices() {
+export default function ServicesPage() {
   return (
     <section className="min-h-screen w-full bg-[#030317] text-white py-12 px-4 md:px-12">
       <div className="max-w-7xl mx-auto">
@@ -78,6 +78,4 @@ const GridItem = ({ area, icon, title, description }) => {
       </div>
     </li>
   );
-};
-
-export default OurServices;
+}; 

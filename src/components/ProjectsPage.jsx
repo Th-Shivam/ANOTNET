@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { PinContainer } from "../components/ui/3d-pin";
+import { motion } from "framer-motion";
 
 function ProjectsPage() {
   const projects = [
@@ -50,34 +51,72 @@ function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-[#030317] py-20 px-4 mt-5">
-      <h1 className="text-4xl md:text-7xl font-bold text-center text-white mb-16">Our Projects</h1>
+      <div className="relative">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-4xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 pb-2">
+            Our Projects
+          </h1>
+          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto mt-4 rounded-full" />
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="absolute -top-4 -left-4 w-8 h-8 bg-blue-500/20 rounded-full blur-xl"
+          />
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="absolute -bottom-4 -right-4 w-8 h-8 bg-purple-500/20 rounded-full blur-xl"
+          />
+        </motion.div>
+      </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 max-w-7xl mx-auto">
         {projects.map((project, index) => (
-          <div key={index} className="flex justify-center mb-8">
+          <motion.div 
+            key={index} 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="flex justify-center mb-8 group"
+            whileHover={{ scale: 1.02 }}
+          >
             <PinContainer title={project.title} href={project.link}>
-              <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] h-[20rem]">
-                <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
+              <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] h-[20rem] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100 group-hover:text-white transition-colors duration-300">
                   {project.title}
                 </h3>
                 <div className="text-base !m-0 !p-0 font-normal">
-                  <span className="text-slate-500">
+                  <span className="text-slate-500 group-hover:text-slate-300 transition-colors duration-300">
                     {project.description}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {project.technologies.map((tech, techIndex) => (
-                    <span
+                    <motion.span
                       key={techIndex}
-                      className="px-2 py-1 text-xs bg-slate-800 rounded-full text-slate-300"
+                      className="px-2 py-1 text-xs bg-slate-800 rounded-full text-slate-300 group-hover:bg-slate-700 transition-colors duration-300"
+                      whileHover={{ scale: 1.05 }}
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
-                <div className={`flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br ${project.gradient}`} />
+                <motion.div 
+                  className={`flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br ${project.gradient}`}
+                  whileHover={{ scale: 1.02 }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
               </div>
             </PinContainer>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

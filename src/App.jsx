@@ -7,6 +7,8 @@ import About from './components/about.jsx'
 import ThreeDCard from './components/3d_card.jsx'
 import Services from './components/services.jsx'
 import ProjectsPage from './components/ProjectsPage.jsx'
+import ServicesPage from './components/ServicesPage.jsx'
+import JoinUs from './components/joinus.jsx'
 import Footer from './components/Footer.jsx'
 import { Routes, Route } from 'react-router-dom'
 
@@ -22,10 +24,12 @@ function App() {
             <Intro/>
             <About/>
             <ThreeDCard/>
-            <Services/>
+            <JoinUs/>
           </>
         } />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/join" element={<JoinUs />} />
       </Routes>
       <Footer />
     </div>

@@ -83,9 +83,9 @@ function Navbar() {
             setTimeout(scrollToIntro, 100); // Small delay to allow navigation and rendering
           }
         }}>About</Link>
-        <Link to="/" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
+        <Link to="/services" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
         <Link to="/projects" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Project</Link>
-        <Link to="/" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
+        <Link to="/join" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
       </div>
     </div>
   );
