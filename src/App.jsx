@@ -15,7 +15,7 @@ import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div className=' bg-[#030317] text-white w-full min-h-screen'>
+    <div className=' bg-[#030317] text-white w-full min-h-screen flex flex-col'>
       <Navbar />
       <Routes>
         <Route path="/" element={
