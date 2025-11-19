@@ -2,6 +2,7 @@
 import React from "react";
 import { PinContainer } from "../components/ui/3d-pin";
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet-async';
 
 function ProjectsPage() {
   const projects = [
@@ -15,7 +16,7 @@ function ProjectsPage() {
     {
       title: "Phishguard",
       description: " PHISHGUARD is a cutting-edge browser extension designed to protect users from phishing attacks and malicious websites in real-time.",
-      technologies: ["HTML", "CSS", "JS" , "Virus-Total-Api"],
+      technologies: ["HTML", "CSS", "JS", "Virus-Total-Api"],
       gradient: "from-green-500 via-emerald-500 to-teal-500",
       link: "https://github.com/Th-Shivam/Phishguard"
     },
@@ -29,7 +30,7 @@ function ProjectsPage() {
     {
       title: "ANOTNET-REPO",
       description: "A repository dedicated to publishing Python scripts related to ethical hacking, cybersecurity, and tech innovations.",
-      technologies: ["Python" , "Kali-Linux"],
+      technologies: ["Python", "Kali-Linux"],
       gradient: "from-pink-500 via-rose-500 to-red-500",
       link: "https://github.com/Th-Shivam/ANOTNET-REPO"
     },
@@ -51,6 +52,10 @@ function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-[#030317] py-20 px-4 mt-5">
+      <Helmet>
+        <title>Projects - ANOTNET</title>
+        <meta name="description" content="Check out our latest projects and innovations." />
+      </Helmet>
       <div className="relative">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -76,11 +81,11 @@ function ProjectsPage() {
           />
         </motion.div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 max-w-7xl mx-auto">
         {projects.map((project, index) => (
-          <motion.div 
-            key={index} 
+          <motion.div
+            key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -109,7 +114,7 @@ function ProjectsPage() {
                     </motion.span>
                   ))}
                 </div>
-                <motion.div 
+                <motion.div
                   className={`flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br ${project.gradient}`}
                   whileHover={{ scale: 1.02 }}
                 />

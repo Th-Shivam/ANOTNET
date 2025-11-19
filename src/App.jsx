@@ -13,6 +13,8 @@ import JoinUs from './components/joinus.jsx'
 import Footer from './components/Footer.jsx'
 import { Routes, Route } from 'react-router-dom'
 
+import { Helmet } from 'react-helmet-async';
+
 function App() {
   return (
     <div className=' bg-[#030317] text-white w-full min-h-screen flex flex-col'>
@@ -20,10 +22,14 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
+            <Helmet>
+              <title>Home - ANOTNET</title>
+              <meta name="description" content="Welcome to ANOTNET - Empowering your digital journey with cutting-edge solutions." />
+            </Helmet>
             <LandingPage />
             <Showcase />
-            <Services />
             <ThreeDCard />
+            <Services />
             <JoinUs />
           </>
         } />

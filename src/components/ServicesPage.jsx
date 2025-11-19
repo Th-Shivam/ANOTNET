@@ -1,10 +1,16 @@
 "use client";
-import { Code, Palette, Smartphone, TrendingUp, Cloud } from "lucide-react";
+import React from "react";
+import { Code, Palette, Smartphone, TrendingUp, Cloud, Box } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { Helmet } from 'react-helmet-async';
 
 export default function ServicesPage() {
   return (
     <section className="min-h-screen w-full bg-[#030317] text-white py-12 px-4 md:px-12">
+      <Helmet>
+        <title>Services - ANOTNET</title>
+        <meta name="description" content="Explore our services including Web Development, UI/UX Design, and more." />
+      </Helmet>
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <h1 className="text-3xl md:text-5xl mt-10 font-bold mb-12 text-center">
