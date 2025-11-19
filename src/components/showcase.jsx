@@ -21,14 +21,15 @@ export function ThreeDMarqueeDemo() {
     "showcase_images/github.jpg",
     "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
     "https://assets.aceternity.com/tabs.png",
+    "showcase_images/SQL.png",
     "showcase_images/apis.jpg",
     "showcase_images/aws.jpeg",
     "showcase_images/kali.jpg",
     "showcase_images/steal_data.jpg",
     "showcase_images/rudrakali.png",
-    
+
     "showcase_images/hacker.jpg",
-    "showcase_images/netcat.jpg",
+
     "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
     "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
     "showcase_images/burp.png",

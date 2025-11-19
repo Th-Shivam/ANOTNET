@@ -31,9 +31,8 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 z-50 w-full px-20 py-5 flex justify-between items-center transition-transform duration-300 ${
-        showNavbar ? "translate-y-0" : "-translate-y-full"
-      } backdrop-blur-md bg-white/10 border-b border-white/20 shadow-md`}
+      className={`fixed top-0 z-50 w-full px-6 md:px-20 py-5 flex justify-between items-center transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"
+        } backdrop-blur-md bg-white/10 border-b border-white/20 shadow-md`}
     >
       {/* Logo */}
       <nav className="flex items-center">
@@ -60,29 +59,7 @@ function Navbar() {
       {/* Navigation Links */}
       <div className={`md:flex space-x-6 text-white ${isMobileMenuOpen ? 'flex flex-col absolute top-full left-0 w-full bg-white/10 backdrop-blur-md py-4 items-center space-x-0 space-y-4' : 'hidden'}`}>
         <Link to="/" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-        <Link to="/" className="hover:text-blue-400" onClick={() => {
-          setIsMobileMenuOpen(false);
-          const scrollToIntro = () => {
-            const introSection = document.getElementById('intro-section');
-            if (introSection) {
-              const offset = 120; // Increased offset
-              const elementPosition = introSection.getBoundingClientRect().top + window.pageYOffset;
-              const offsetPosition = elementPosition - offset;
-
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-              });
-            }
-          };
-
-          if (location.pathname === '/') {
-            scrollToIntro();
-          } else {
-            navigate('/');
-            setTimeout(scrollToIntro, 100); // Small delay to allow navigation and rendering
-          }
-        }}>About</Link>
+        <Link to="/about" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
         <Link to="/services" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
         <Link to="/projects" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Project</Link>
         <Link to="/join" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>

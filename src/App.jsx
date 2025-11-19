@@ -1,9 +1,10 @@
+
 import React from 'react'
 import Navbar from './components/navbar.jsx'
 import LandingPage from './components/LandingPage.jsx'
 import Showcase from './components/showcase.jsx'
 import Intro from './components/intro.jsx'
-import About from './components/about.jsx'
+import AboutPage from './components/AboutPage.jsx'
 import ThreeDCard from './components/3d_card.jsx'
 import Services from './components/services.jsx'
 import ProjectsPage from './components/ProjectsPage.jsx'
@@ -19,14 +20,14 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            <LandingPage/>
+            <LandingPage />
             <Showcase />
-            <Intro/>
-            <About/>
-            <ThreeDCard/>
-            <JoinUs/>
+            <Services />
+            <ThreeDCard />
+            <JoinUs />
           </>
         } />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/join" element={<JoinUs />} />

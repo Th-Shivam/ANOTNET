@@ -1,5 +1,5 @@
 "use client";
-import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
+import { Code, Palette, Smartphone, TrendingUp, Cloud } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 export default function ServicesPage() {
@@ -15,33 +15,33 @@ export default function ServicesPage() {
         <ul className="grid grid-cols-1 grid-rows-none gap-4 mt-44 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
           <GridItem
             area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-            icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
-            title="Coming Soon"
-            description="Coming Soon"
+            icon={<Code className="h-4 w-4 text-white dark:text-neutral-400" />}
+            title="Web Development"
+            description="Building responsive, high-performance websites using modern technologies like React, Next.js, and Tailwind CSS."
           />
           <GridItem
             area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
-            icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
-            title="Coming Soon"
-            description="Coming Soon"
+            icon={<Palette className="h-4 w-4 text-white dark:text-neutral-400" />}
+            title="UI/UX Design"
+            description="Creating intuitive and visually stunning user interfaces that provide exceptional user experiences."
           />
           <GridItem
             area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
-            icon={<Lock className="h-4 w-4 text-white dark:text-neutral-400" />}
-            title="Coming Soon"
-            description="Coming Soon"
+            icon={<Smartphone className="h-4 w-4 text-white dark:text-neutral-400" />}
+            title="Mobile App Dev"
+            description="Developing cross-platform mobile applications that run smoothly on both iOS and Android devices."
           />
           <GridItem
             area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
-            icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
-            title="Coming Soon"
-            description="Coming Soon"
+            icon={<TrendingUp className="h-4 w-4 text-white dark:text-neutral-400" />}
+            title="SEO Optimization"
+            description="Optimizing your online presence to rank higher in search results and drive organic traffic."
           />
           <GridItem
             area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
-            icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-            title="Coming Soon"
-            description="Coming Soon"
+            icon={<Cloud className="h-4 w-4 text-white dark:text-neutral-400" />}
+            title="Cloud Solutions"
+            description="Scalable cloud infrastructure setup and management using AWS, Google Cloud, or Azure."
           />
         </ul>
       </div>
