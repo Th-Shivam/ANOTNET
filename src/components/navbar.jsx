@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import anotnetLogo from "../assets/anotnet.jpg";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
@@ -56,15 +57,87 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Navigation Links */}
-      <div className={`md:flex space-x-6 text-white ${isMobileMenuOpen ? 'flex flex-col absolute top-full left-0 w-full bg-white/10 backdrop-blur-md py-4 items-center space-x-0 space-y-4' : 'hidden'}`}>
-        <Link to="/" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-        <Link to="/about" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-        <Link to="/projects" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
-        <Link to="/services" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
-        <Link to="/blog" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
-        <Link to="/join" className="group relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 block w-full md:w-auto mt-4 md:mt-0" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
+      {/* Navigation Links (Desktop) */}
+      <div className="hidden md:flex space-x-8 text-white">
+        <Link to="/" className="hover:text-blue-400 font-medium transition-colors">Home</Link>
+        <Link to="/about" className="hover:text-blue-400 font-medium transition-colors">About</Link>
+        <Link to="/projects" className="hover:text-blue-400 font-medium transition-colors">Projects</Link>
+        <Link to="/services" className="hover:text-blue-400 font-medium transition-colors">Services</Link>
+        <Link to="/blog" className="hover:text-blue-400 font-medium transition-colors">Blog</Link>
+        <Link to="/join" className="group relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            Contact Us
+          </span>
+        </Link>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black/95 backdrop-blur-xl md:hidden"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-6 right-6 p-2 text-white/70 hover:text-white transition-colors"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="flex flex-col space-y-8 text-center">
+              {[
+                { name: "Home", path: "/" },
+                { name: "About", path: "/about" },
+                { name: "Projects", path: "/projects" },
+                { name: "Services", path: "/services" },
+                { name: "Blog", path: "/blog" },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + index * 0.1 }}
+                >
+                  <Link
+                    to={item.path}
+                    className="text-3xl font-light text-white hover:text-blue-500 transition-colors tracking-wide"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Link
+                  to="/join"
+                  className="inline-block"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-lg font-medium text-white backdrop-blur-3xl">
+                      Contact Us
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
