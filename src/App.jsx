@@ -15,6 +15,7 @@ const ProjectsPage = React.lazy(() => import('./components/ProjectsPage.jsx'));
 const ServicesPage = React.lazy(() => import('./components/ServicesPage.jsx'));
 const JoinUs = React.lazy(() => import('./components/joinus.jsx'));
 const BlogPage = React.lazy(() => import('./components/BlogPage.jsx'));
+const BlogDetail = React.lazy(() => import('./components/BlogDetail.jsx'));
 
 // Loading Fallback Component
 const LoadingFallback = () => (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/join" element={<JoinUs />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>
       </Suspense>
       <Footer />

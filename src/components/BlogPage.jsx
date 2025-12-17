@@ -1,9 +1,11 @@
-import React from "react";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
 import { PinContainer } from "../components/ui/3d-pin";
 
-const BlogCard = ({ title, excerpt, date, readTime, link }) => {
+const BlogCard = ({ title, excerpt, date, readTime, link, imageUrl }) => {
     return (
         <div className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]">
             <PinContainer title="Read More" href={link}>
@@ -16,7 +18,15 @@ const BlogCard = ({ title, excerpt, date, readTime, link }) => {
                             {excerpt}
                         </span>
                     </div>
-                    <div className="flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500" />
+                    {imageUrl ? (
+                        <img
+                            src={imageUrl}
+                            alt={title}
+                            className="flex flex-1 w-full rounded-lg mt-4 object-cover"
+                        />
+                    ) : (
+                        <div className="flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500" />
+                    )}
                     <div className="flex justify-between items-center mt-4 text-xs text-slate-400">
                         <span>{date}</span>
                         <span>{readTime}</span>
@@ -28,51 +38,45 @@ const BlogCard = ({ title, excerpt, date, readTime, link }) => {
 };
 
 export default function BlogPage() {
-    const blogs = [
-        {
-            title: "The Future of AI in 2025",
-            excerpt: "Exploring how Artificial Intelligence will shape our lives, from personalized assistants to autonomous agents.",
-            date: "Dec 15, 2024",
-            readTime: "5 min read",
-            link: "#"
-        },
-        {
-            title: "Why Cybersecurity Matters",
-            excerpt: "Understanding the importance of digital security in an interconnected world and how to stay safe.",
-            date: "Dec 10, 2024",
-            readTime: "7 min read",
-            link: "#"
-        },
-        {
-            title: "React vs Vue: A Comparison",
-            excerpt: "A deep dive into the pros and cons of two popular JavaScript frameworks for modern web development.",
-            date: "Nov 28, 2024",
-            readTime: "6 min read",
-            link: "#"
-        },
-        {
-            title: "Mastering Ethical Hacking",
-            excerpt: "Steps to becoming a certified ethical hacker and securing systems against potential threats.",
-            date: "Nov 20, 2024",
-            readTime: "8 min read",
-            link: "#"
-        },
-        {
-            title: "Cloud Computing Trends",
-            excerpt: "The shift towards serverless architecture and what it means for developers and businesses.",
-            date: "Nov 15, 2024",
-            readTime: "4 min read",
-            link: "#"
-        },
-        {
-            title: "The Rise of Web3",
-            excerpt: "Decentralization, blockchain, and the future of the internet as we know it.",
-            date: "Oct 30, 2024",
-            readTime: "6 min read",
-            link: "#"
-        }
+    const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    ];
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, "blogs"));
+                const blogList = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setBlogs(blogList);
+            } catch (error) {
+                console.error("Error fetching blogs: ", error);
+                setError("Failed to load blogs. Please check your connection or permissions.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-[#030317] flex items-center justify-center text-white">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen bg-[#030317] flex items-center justify-center text-red-500">
+                <p className="text-xl">{error}</p>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-[#030317] py-20 px-4">
@@ -96,18 +100,24 @@ export default function BlogPage() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {blogs.map((blog, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                        >
-                            <BlogCard {...blog} />
-                        </motion.div>
-                    ))}
-                </div>
+                {blogs.length === 0 ? (
+                    <div className="text-center text-gray-500 text-xl mt-20">
+                        No blogs found. Stay tuned!
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {blogs.map((blog, index) => (
+                            <motion.div
+                                key={blog.id || index}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <BlogCard {...blog} link={`/blog/${blog.id}`} />
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
