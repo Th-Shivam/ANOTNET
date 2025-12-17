@@ -58,11 +58,12 @@ function Navbar() {
 
       {/* Navigation Links */}
       <div className={`md:flex space-x-6 text-white ${isMobileMenuOpen ? 'flex flex-col absolute top-full left-0 w-full bg-white/10 backdrop-blur-md py-4 items-center space-x-0 space-y-4' : 'hidden'}`}>
-        <Link to="/" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-        <Link to="/about" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-        <Link to="/services" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
-        <Link to="/projects" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Project</Link>
-        <Link to="/join" className="hover:text-blue-400" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
+        <Link to="/" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <Link to="/about" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+        <Link to="/projects" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
+        <Link to="/services" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
+        <Link to="/blog" className="hover:text-blue-500 cursor-pointer transition-colors block py-2 md:py-0" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+        <Link to="/join" className="group relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 block w-full md:w-auto mt-4 md:mt-0" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
       </div>
     </div>
   );
