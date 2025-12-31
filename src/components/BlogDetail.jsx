@@ -1,53 +1,20 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { getBlogBySlug } from '../data/blogData';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Clock, Calendar } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar, User, Tag } from 'lucide-react';
 
 export default function BlogDetail() {
-    const { id } = useParams();
+    const { slug } = useParams();
     const navigate = useNavigate();
-    const [blog, setBlog] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const blog = getBlogBySlug(slug);
 
-    useEffect(() => {
-        const fetchBlog = async () => {
-            try {
-                const docRef = doc(db, 'blogs', id);
-                const docSnap = await getDoc(docRef);
-
-                if (docSnap.exists()) {
-                    setBlog({ id: docSnap.id, ...docSnap.data() });
-                } else {
-                    setError('Blog post not found.');
-                }
-            } catch (err) {
-                console.error('Error fetching blog:', err);
-                setError('Failed to load blog post.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchBlog();
-    }, [id]);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen bg-[#030317] flex items-center justify-center text-white">
-                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-        );
-    }
-
-    if (error) {
+    if (!blog) {
         return (
             <div className="min-h-screen bg-[#030317] flex flex-col items-center justify-center text-white">
-                <p className="text-xl text-red-500 mb-4">{error}</p>
+                <p className="text-xl text-red-500 mb-4">Blog post not found.</p>
                 <button
                     onClick={() => navigate('/blog')}
                     className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
@@ -58,11 +25,66 @@ export default function BlogDetail() {
         );
     }
 
+    // Generate full URL for canonical and Open Graph tags
+    const currentUrl = `https://anotnet.com/blog/${blog.slug}`;
+
     return (
         <div className="min-h-screen bg-[#030317] py-24 px-4 sm:px-6 lg:px-8 text-white font-sans">
             <Helmet>
-                <title>{blog?.title || 'Blog'} - ANOTNET</title>
-                <meta name="description" content={blog?.excerpt || 'Read this blog post on ANOTNET'} />
+                {/* Primary Meta Tags */}
+                <title>{blog.title} - ANOTNET</title>
+                <meta name="title" content={`${blog.title} - ANOTNET`} />
+                <meta name="description" content={blog.metaDescription} />
+                <meta name="keywords" content={blog.keywords} />
+                <meta name="author" content={blog.author} />
+                <link rel="canonical" href={currentUrl} />
+
+                {/* Open Graph / Facebook */}
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={currentUrl} />
+                <meta property="og:title" content={blog.title} />
+                <meta property="og:description" content={blog.metaDescription} />
+                <meta property="og:image" content={blog.imageUrl} />
+                <meta property="og:site_name" content="ANOTNET" />
+                <meta property="article:published_time" content={new Date(blog.date).toISOString()} />
+                <meta property="article:author" content={blog.author} />
+                <meta property="article:section" content={blog.category} />
+
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:url" content={currentUrl} />
+                <meta name="twitter:title" content={blog.title} />
+                <meta name="twitter:description" content={blog.metaDescription} />
+                <meta name="twitter:image" content={blog.imageUrl} />
+
+                {/* Structured Data / Schema.org */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        "headline": blog.title,
+                        "description": blog.metaDescription,
+                        "image": blog.imageUrl,
+                        "datePublished": new Date(blog.date).toISOString(),
+                        "author": {
+                            "@type": "Organization",
+                            "name": blog.author
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "ANOTNET",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://anotnet.com/logo.png"
+                            }
+                        },
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": currentUrl
+                        },
+                        "keywords": blog.keywords
+                    })}
+                </script>
             </Helmet>
 
             <motion.div
@@ -94,8 +116,19 @@ export default function BlogDetail() {
                             <span>{blog.readTime}</span>
                         </div>
                     )}
+                    {blog.author && (
+                        <div className="flex items-center">
+                            <User className="w-4 h-4 mr-2" />
+                            <span>{blog.author}</span>
+                        </div>
+                    )}
+                    {blog.category && (
+                        <div className="flex items-center">
+                            <Tag className="w-4 h-4 mr-2" />
+                            <span>{blog.category}</span>
+                        </div>
+                    )}
                 </div>
-
 
                 {blog.imageUrl && (
                     <img
@@ -107,11 +140,17 @@ export default function BlogDetail() {
 
                 <div className="prose prose-invert prose-lg max-w-none text-slate-300">
                     {blog.content ? (
-                        blog.content.split('\n').map((paragraph, index) => (
-                            <p key={index} className="mb-4 leading-relaxed">
-                                {paragraph}
-                            </p>
-                        ))
+                        blog.content.split('\n\n').map((paragraph, index) => {
+                            // Check if paragraph is a heading (starts with specific patterns)
+                            if (paragraph.trim().length > 0) {
+                                return (
+                                    <p key={index} className="mb-6 leading-relaxed text-justify">
+                                        {paragraph}
+                                    </p>
+                                );
+                            }
+                            return null;
+                        })
                     ) : (
                         <p className="italic text-slate-500">No content available.</p>
                     )}

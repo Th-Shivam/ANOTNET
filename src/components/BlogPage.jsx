@@ -1,9 +1,8 @@
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
 import { PinContainer } from "../components/ui/3d-pin";
+import { blogData } from "../data/blogData";
 
 const BlogCard = ({ title, excerpt, date, readTime, link, imageUrl }) => {
     return (
@@ -38,51 +37,12 @@ const BlogCard = ({ title, excerpt, date, readTime, link, imageUrl }) => {
 };
 
 export default function BlogPage() {
-    const [blogs, setBlogs] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchBlogs = async () => {
-            try {
-                const querySnapshot = await getDocs(collection(db, "blogs"));
-                const blogList = querySnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-                setBlogs(blogList);
-            } catch (error) {
-                console.error("Error fetching blogs: ", error);
-                setError("Failed to load blogs. Please check your connection or permissions.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchBlogs();
-    }, []);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen bg-[#030317] flex items-center justify-center text-white">
-                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="min-h-screen bg-[#030317] flex items-center justify-center text-red-500">
-                <p className="text-xl">{error}</p>
-            </div>
-        );
-    }
-
     return (
         <div className="min-h-screen bg-[#030317] py-20 px-4">
             <Helmet>
-                <title>Blog - ANOTNET</title>
-                <meta name="description" content="Read our latest insights on technology, AI, cybersecurity, and more." />
+                <title>Blog - ANOTNET | Technology Insights & Tutorials</title>
+                <meta name="description" content="Read our latest insights on technology, AI, web development, cybersecurity, and more. Expert tutorials and industry analysis." />
+                <meta name="keywords" content="Technology Blog, AI, Web Development, Cybersecurity, Tech Tutorials, ANOTNET" />
             </Helmet>
 
             <div className="max-w-7xl mx-auto">
@@ -100,20 +60,20 @@ export default function BlogPage() {
                     </p>
                 </motion.div>
 
-                {blogs.length === 0 ? (
+                {blogData.length === 0 ? (
                     <div className="text-center text-gray-500 text-xl mt-20">
                         No blogs found. Stay tuned!
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {blogs.map((blog, index) => (
+                        {blogData.map((blog, index) => (
                             <motion.div
                                 key={blog.id || index}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
                             >
-                                <BlogCard {...blog} link={`/blog/${blog.id}`} />
+                                <BlogCard {...blog} link={`/blog/${blog.slug}`} />
                             </motion.div>
                         ))}
                     </div>

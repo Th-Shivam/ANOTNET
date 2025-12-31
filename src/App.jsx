@@ -48,7 +48,7 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/join" element={<JoinUs />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
         </Routes>
       </Suspense>
       <Footer />
