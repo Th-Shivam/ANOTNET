@@ -20,61 +20,43 @@ const BlogDetail = React.lazy(() => import('./components/BlogDetail.jsx'));
 // Loading Fallback Component
 const LoadingFallback = () => (
   <div className="min-h-screen w-full flex items-center justify-center bg-[#030317] text-white">
-    <div className="flex flex-col items-center justify-center gap-6">
-      {/* Swan Logo with Animations */}
-      <div className="relative">
-        <img
-          src="/SWAN.svg"
-          alt="Loading..."
-          className="w-32 h-32 animate-pulse"
-          style={{
-            animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite, float 3s ease-in-out infinite'
-          }}
-        />
-        {/* Glow Effect */}
-        <div className="absolute inset-0 blur-2xl opacity-50 bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"></div>
+    <div className="flex flex-col items-center justify-center gap-8">
+      {/* Animated Loader Circles */}
+      <div className="relative w-24 h-24">
+        {/* Outer spinning ring */}
+        <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-500 border-r-purple-500 animate-spin"></div>
+
+        {/* Middle spinning ring - opposite direction */}
+        <div className="absolute inset-2 rounded-full border-4 border-transparent border-b-cyan-400 border-l-indigo-400"
+          style={{ animation: 'spin 1.5s linear infinite reverse' }}></div>
+
+        {/* Inner pulsing circle */}
+        <div className="absolute inset-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 animate-pulse"></div>
+
+        {/* Center dot */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+        </div>
+
+        {/* Glow effect */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur-xl opacity-40 animate-pulse"></div>
       </div>
 
-      {/* Loading Text */}
-      <div className="text-center">
-        <p className="text-lg font-medium text-gray-300 animate-pulse">Loading...</p>
+      {/* Brand Name */}
+      <div className="text-center space-y-2">
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
+          ANOTNET
+        </h2>
+        <p className="text-sm text-gray-400">Loading your experience...</p>
       </div>
 
-      {/* Animated Progress Bar */}
-      <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-full"
-          style={{
-            animation: 'loading 2s ease-in-out infinite',
-            backgroundSize: '200% 100%'
-          }}
-        ></div>
+      {/* Animated dots */}
+      <div className="flex gap-2">
+        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+        <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+        <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
       </div>
     </div>
-
-    {/* CSS Animations */}
-    <style>{`
-      @keyframes float {
-        0%, 100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-20px);
-        }
-      }
-      
-      @keyframes loading {
-        0% {
-          transform: translateX(-100%);
-        }
-        50% {
-          transform: translateX(0%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
-      }
-    `}</style>
   </div>
 );
 
